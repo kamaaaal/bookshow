@@ -11,3 +11,7 @@ class Admin(Account):
     
     def add_movie(self):
         pass
+
+    def print_history(self):
+        for action,change in self.history:
+            print(f'{self.name} {action} : \n{change.name}')

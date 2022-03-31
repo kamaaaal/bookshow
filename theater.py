@@ -1,5 +1,4 @@
-from random import randrange
-
+from seat import Seat
 
 class Theater:
 
@@ -11,9 +10,9 @@ class Theater:
             '6:00 pm' : None
         }
         self.seats = {
-            '9:00 am' : [[ f'{x}{y}' for x in range(1,10)] for y in range(1,10)],
-            '2:00 pm' : [[ f'{x}{y}' for x in range(1,10)] for y in range(1,10)],
-            '6:00 pm' : [[ f'{x}{y}' for x in range(1,10)] for y in range(1,10)], 
+            '9:00 am' : [[ Seat(f'{y}{x}',self.name) for x in range(1,10)] for y in range(0,10)],
+            '2:00 pm' : [[ Seat(f'{y}{x}',self.name) for x in range(1,10)] for y in range(0,10)],
+            '6:00 pm' : [[ Seat(f'{y}{x}',self.name) for x in range(1,10)] for y in range(0,10)], 
             }
         self.location = location 
 
@@ -37,16 +36,17 @@ class Theater:
             return shows
 
     def print_seats(self,time):
-        print(f'\n"NOTE" : "NA" represents not availabe\n')
+        print(f'\n"NOTE" : "BD" represents Booked\n')
         if time in self.seats:
             seats = self.seats[time]
-            for x in seats:
-                print(x)
+            for row in seats:
+                for seat in row:
+                    print(seat,end="|")
+                print()
 
     def clear_seats(self):
         self.seats = {
-            '9:00 am' : [[ f'{x}{y}' for x in range(1,10)] for y in range(1,10)],
-            '2:00 pm' : [[ f'{x}{y}' for x in range(1,10)] for y in range(1,10)],
-            '6:00 pm' : [[ f'{x}{y}' for x in range(1,10)] for y in range(1,10)], 
+            '9:00 am' : [[ Seat(f'{y}{x}',self.name) for x in range(1,10)] for y in range(0,10)],
+            '2:00 pm' : [[ Seat(f'{y}{x}',self.name) for x in range(1,10)] for y in range(0,10)],
+            '6:00 pm' : [[ Seat(f'{y}{x}',self.name) for x in range(1,10)] for y in range(0,10)], 
             }
-
